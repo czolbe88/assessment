@@ -1,8 +1,8 @@
-import {Pool as PromisePool} from "mysql2/promise";
-const mysql = require('mysql2');
+import {Pool} from "mysql2/promise";
 
-export const getClient = (): PromisePool => {
-    // Create the connection pool. The pool-specific settings are the defaults
+const mysql = require('mysql2/promise');
+
+export const getClient = (): Pool => {
     const pool = mysql.createPool({
         host: 'localhost',
         user: 'root',
@@ -12,6 +12,5 @@ export const getClient = (): PromisePool => {
         connectionLimit: 10,
         queueLimit: 0
     });
-    const promisePool = pool.promise();
-    return promisePool;
+    return pool;
 }
